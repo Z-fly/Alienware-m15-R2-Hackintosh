@@ -2,10 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ACPI</key>
+	<dict>
+		<key>SSDT</key>
+		<dict>
+			<key>Generate</key>
+			<dict>
+				<key>PluginType</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>-v -igfxblt -igfxbls igfxonln=1</string>
+		<string>-v igfxonln=1</string>
 		<key>DefaultVolume</key>
 		<string>LastBootedVolume</string>
 		<key>Timeout</key>
@@ -18,14 +29,20 @@
 		<key>Audio</key>
 		<dict>
 			<key>Inject</key>
-			<integer>11</integer>
+			<integer>15</integer>
 		</dict>
+		<key>LANInjection</key>
+		<false/>
 		<key>Properties</key>
 		<dict>
 			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
 			<dict>
 				<key>AAPL,ig-platform-id</key>
 				<data>CQClPg==</data>
+				<key>enable-backlight-registers-alternative-fix</key>
+				<data>AQAAAA==</data>
+				<key>enable-backlight-smoother</key>
+				<data>AQAAAA==</data>
 				<key>framebuffer-fbmem</key>
 				<data>AACQAA==</data>
 				<key>framebuffer-patch-enable</key>
@@ -33,6 +50,11 @@
 				<key>framebuffer-stolenmem</key>
 				<data>AAAwAQ==</data>
 			</dict>
+		</dict>
+		<key>USB</key>
+		<dict>
+			<key>Inject</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>GUI</key>
@@ -42,6 +64,12 @@
 	</dict>
 	<key>KernelAndKextPatches</key>
 	<dict>
+		<key>AppleIntelCPUPM</key>
+		<false/>
+		<key>AppleRTC</key>
+		<true/>
+		<key>KernelPm</key>
+		<false/>
 		<key>KernelXCPM</key>
 		<true/>
 		<key>PanicNoKextDump</key>
@@ -51,18 +79,12 @@
 	<dict>
 		<key>AvoidRuntimeDefrag</key>
 		<true/>
-		<key>DevirtualiseMmio</key>
-		<true/>
 		<key>DisableLinkeditJettison</key>
 		<true/>
 		<key>EnableSafeModeSlide</key>
-		<true/>
-		<key>PowerTimeoutKernelPanic</key>
-		<true/>
-		<key>ProtectUefiServices</key>
-		<true/>
-		<key>ProvideCustomSlide</key>
-		<true/>
+		<false/>
+		<key>EnableWriteUnprotector</key>
+		<false/>
 		<key>ProvideMaxSlide</key>
 		<integer>0</integer>
 		<key>RebuildAppleMemoryMap</key>
@@ -72,8 +94,6 @@
 		<key>SetupVirtualMap</key>
 		<true/>
 		<key>SyncRuntimePermissions</key>
-		<true/>
-		<key>XhciPortLimit</key>
 		<true/>
 	</dict>
 	<key>RtVariables</key>
@@ -135,11 +155,6 @@
 		<string>000000000000</string>
 		<key>Version</key>
 		<string>1.0</string>
-	</dict>
-	<key>SystemParameters</key>
-	<dict>
-		<key>InjectSystemID</key>
-		<true/>
 	</dict>
 </dict>
 </plist>
